@@ -1,15 +1,25 @@
 import { Fragment } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
+const DUMMY_QUOTES = [
+  { id: 'q1', author: 'Wale', text: 'Learning React is fun!'},
+  { id: 'q2', author: 'Seun', text: 'Learning React is great!'}
+]
 
 const QuoteDetail = () => {
   const { quoteId } = useParams();
 
+  const quote = DUMMY_QUOTES.find(quote => quote.id === quoteId);
+
+  if (!quote) {
+    return <p>No quote found!</p>
+  }
+
   return (
     <Fragment>
-      <h1>Quote detail page</h1>
-      <p>{quoteId}</p>
-      <Outlet />
+      <HighlightedQuote text={quote.text} author={quote.author} />
+      <Outlet />              {/*the nested Comments component is loaded and inserted here whenever the present URL matches its specfied Route path*/}
     </Fragment>
   )
 }
