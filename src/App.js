@@ -3,6 +3,7 @@ import Comments from "./components/comments/Comments";
 import Layout from "./components/layout/Layout";
 import AllQuotes from "./pages/AllQuotes";
 import NewQuote from "./pages/NewQuote";
+import NotFound from "./pages/NotFound";
 import QuoteDetail from "./pages/QuoteDetail";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="comments" element={<Comments />}/>
         </Route>
         <Route path="/new-quote" element={<NewQuote />} />
+        <Route path="*" element={<NotFound />}/>  {/*matches any URL and should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the URL*/}
       </Routes>
     </Layout>
   );
