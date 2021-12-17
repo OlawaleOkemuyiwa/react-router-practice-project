@@ -8,7 +8,7 @@ const DUMMY_QUOTES = [
 ]
 
 const QuoteDetail = () => {
-  const { quoteId } = useParams();
+  const { quoteId } = useParams();  //to get concrete values of dynamic path segments e.g "domain/welcome/:someId"
 
   const quote = DUMMY_QUOTES.find(quote => quote.id === quoteId);
 
