@@ -1,6 +1,6 @@
 import { useReducer, useCallback } from 'react';
 
-function httpReducer(state, action) {
+function httpReducer(latestState, action) {
   if (action.type === 'SEND') {
     return {
       data: null,
@@ -25,7 +25,7 @@ function httpReducer(state, action) {
     };
   }
 
-  return state;
+  return latestState;
 }
 
 function useHttp(requestFunction, startWithPending = false) {
