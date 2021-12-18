@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, Link } from "react-router-dom";
 import Comments from "./components/comments/Comments";
 import Layout from "./components/layout/Layout";
 import AllQuotes from "./pages/AllQuotes";
@@ -13,10 +13,15 @@ function App() {
         <Route path="/" element={<Navigate replace to="/quotes"/>}/>
         <Route path="/quotes" element={<AllQuotes />} />
         <Route path="/quotes/:quoteId" element={<QuoteDetail />}>
+          <Route path="" element={                                    //the path here is relative to the parent route's path and since the element should be displayed when the URL is that of the parent's, it is left just that way
+            <div className="centered">
+              <Link className="btn btn--flat" to="comments">Load Comments</Link>
+            </div>
+          }/>
           <Route path="comments" element={<Comments />}/>
         </Route>
         <Route path="/new-quote" element={<NewQuote />} />
-        <Route path="*" element={<NotFound />}/>  {/*matches any URL and should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the URL*/}
+        <Route path="*" element={<NotFound />}/>                      {/*matches all/any URL and should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the URL*/}
       </Routes>
     </Layout>
   );

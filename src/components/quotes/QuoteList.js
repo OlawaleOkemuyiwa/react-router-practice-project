@@ -17,7 +17,7 @@ const sortQuotes = (quotes, ascending) => {
 const QuoteList = props => {
   const navigate = useNavigate();     //useNavigate helps to programatically navigate and change the URL 
   const location = useLocation();     //useLocation provides access to a location object which has info about the currently loaded URL(hash, pathname, search etc)
-
+  
   const queryParams = new URLSearchParams(location.search)   //URLSearchParams is a JS func constructor that helps to extract data from query/searh parameters
   
   const isSortingAscending = queryParams.get('sort') === 'asc';
@@ -25,7 +25,11 @@ const QuoteList = props => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    navigate(`/quotes?sort=${isSortingAscending ? 'desc' : 'asc'}`);
+    //navigate(`${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`);
+    navigate({
+      pathname: location.pathname,
+      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`   //the ? is optional
+    })
   }
 
   return (

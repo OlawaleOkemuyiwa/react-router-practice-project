@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
 const DUMMY_QUOTES = [
@@ -19,10 +19,7 @@ const QuoteDetail = () => {
   return (
     <Fragment>
       <HighlightedQuote text={quote.text} author={quote.author} />
-      <div className="centered">
-        <Link className="btn btn--flat" to="comments">Load Comments</Link>
-      </div>
-      <Outlet />              {/*the nested Comments component is loaded and inserted here whenever the present URL matches its specfied Route path*/}
+      <Outlet />                    {/* one of the nested components (only one can be loaded at once) whose specified route's path matches the URL is loaded and inserted here*/}
     </Fragment>
   )
 }
