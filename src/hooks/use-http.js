@@ -29,27 +29,27 @@ function httpReducer(latestState, action) {
 }
 
 function useHttp(requestFunction, startWithPending = false) {
+
   const [httpState, dispatch] = useReducer(httpReducer, {
-    status: startWithPending ? 'pending' : null,
     data: null,
     error: null,
+    status: startWithPending ? 'pending' : null,
   });
 
-  const sendRequest = useCallback(
-    async function (requestData) {
-      dispatch({ type: 'SEND' });
-      try {
-        const responseData = await requestFunction(requestData);
-        dispatch({ type: 'SUCCESS', responseData });
-      } catch (error) {
-        dispatch({
-          type: 'ERROR',
-          errorMessage: error.message || 'Something went wrong!',
-        });
-      }
-    },
-    [requestFunction]
-  );
+  const sendRequest = useCallback(async (requestData) => {
+    dispatch({ type: 'SEND' });
+
+    try {
+      const responseData = await requestFunction(requestData);
+      dispatch({ type: 'SUCCESS', responseData });
+
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        errorMessage: error.message || 'Something went wrong!',
+      });
+    }
+  }, [requestFunction]);
 
   return {
     sendRequest,
