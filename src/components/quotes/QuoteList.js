@@ -28,7 +28,7 @@ const QuoteList = props => {
     //navigate(`${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`);
     navigate({
       pathname: location.pathname,
-      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`   //the ? is optional
+      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`   //the '?' is optional as it would be automactically inserted if not put
     })
   }
 
