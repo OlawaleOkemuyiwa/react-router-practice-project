@@ -16,10 +16,10 @@ const NewQuote = () => {
     }
   }, [status, navigate])
 
-  const addQuoteHandler = async (quoteData) => {
-    await sendRequest(quoteData);
+  const addQuoteHandler = quoteData => {
+    sendRequest(quoteData);
   }
-  
+
   return (
     <QuoteForm 
       isLoading={status === 'pending'}

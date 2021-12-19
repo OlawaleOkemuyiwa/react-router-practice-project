@@ -9,9 +9,7 @@ const AllQuotes = () => {
   const { sendRequest, status, data: loadedQuotes, error } = useHttp(getAllQuotes, true);
 
   useEffect(() => {
-    (async function () {
-      await sendRequest()
-    })();
+    sendRequest()
   }, [sendRequest]);
 
   if (status === 'pending') {
