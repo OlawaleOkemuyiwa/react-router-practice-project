@@ -21,7 +21,7 @@ function App() {
           <Route path="comments" element={<Comments />}/>
         </Route>
         <Route path="/new-quote" element={<NewQuote />} />
-        <Route path="*" element={<NotFound />}/>                      {/*matches all/any URL and should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the URL*/}
+        <Route path="*" element={<NotFound />}/>                      {/*matches all|any URL and should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the URL*/}
       </Routes>
     </Layout>
   );

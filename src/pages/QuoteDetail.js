@@ -6,7 +6,7 @@ import useHttp from "../hooks/use-http";
 import { getSingleQuote } from "../lib/api";
 
 const QuoteDetail = () => {
-  const { quoteId } = useParams();  //to get concrete values of dynamic path segments e.g "domain/welcome/:someId"
+  const { quoteId } = useParams();    //to get concrete values of dynamic path segments e.g "domain/welcome/:someId"
   const { sendRequest, status, data: loadedQuote, error } = useHttp(getSingleQuote, true);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const QuoteDetail = () => {
   return (
     <Fragment>
       <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
-      <Outlet />                    {/* one of the nested components (only one can be loaded at once) whose specified route's path matches the URL is loaded and inserted here*/}
+      <Outlet />                    {/* one of the children route components (only one can be loaded at once) whose specified route's path matches the URL is loaded and inserted here*/}
     </Fragment>
   )
 }

@@ -3,11 +3,15 @@ import { useState } from 'react';
 import classes from './Comments.module.css';
 import NewCommentForm from './NewCommentForm';
 
-const Comments = () => {
+const Comments = props => {
   const [isAddingComment, setIsAddingComment] = useState(false);
 
   const startAddCommentHandler = () => {
     setIsAddingComment(true);
+  };
+  
+  const onAddCommentHandler = () => {
+
   };
   
   return (
@@ -18,7 +22,7 @@ const Comments = () => {
           Add a Comment
         </button>
       )}
-      {isAddingComment && <NewCommentForm />}
+      {isAddingComment && <NewCommentForm notifyParentAfterAddingComment={onAddCommentHandler}/>}
       <p>Comments...</p>
     </section>
   );
