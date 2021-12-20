@@ -2,16 +2,14 @@ import { useEffect, useRef } from 'react';
 import useHttp from '../../hooks/use-http';
 import { addComment } from '../../lib/api';
 import LoadingSpinner from '../UI/LoadingSpinner';
-import { useParams } from 'react-router-dom';
 
 import classes from './NewCommentForm.module.css';
 
 const NewCommentForm = props => {
   const commentTextRef = useRef(null);
   const { sendRequest, status, error } = useHttp(addComment);
-  const { quoteId } = useParams();
 
-  const { notifyParentAfterAddingComment } = props;
+  const { quoteId, notifyParentAfterAddingComment } = props;
 
   useEffect(() => {
     if (status === 'completed' && !error) {
@@ -24,8 +22,11 @@ const NewCommentForm = props => {
     const enteredText = commentTextRef.current.value;
 
     // optional: Could validate here
-
-    sendRequest({text: enteredText }, quoteId)
+    
+    sendRequest({
+      commentData: { text: enteredText }, 
+      quoteId
+    })
   };
 
   return (
