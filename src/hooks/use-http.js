@@ -3,25 +3,25 @@ import { useReducer, useCallback } from 'react';
 function httpReducer(latestState, action) {
   if (action.type === 'SEND') {
     return {
-      data: null,
-      error: null,
       status: 'pending',
+      data: null,
+      error: null
     };
   }
 
   if (action.type === 'SUCCESS') {
     return {
-      data: action.responseData,
-      error: null,
       status: 'completed',
+      data: action.responseData,
+      error: null
     };
   }
 
   if (action.type === 'ERROR') {
     return {
-      data: null,
-      error: action.errorMessage,
       status: 'completed',
+      data: null,
+      error: action.errorMessage
     };
   }
 
@@ -31,12 +31,12 @@ function httpReducer(latestState, action) {
 function useHttp(requestFunction, startWithPending = false) {
 
   const [httpState, dispatch] = useReducer(httpReducer, {
-    data: null,
-    error: null,
     status: startWithPending ? 'pending' : null,
+    data: null,
+    error: null
   });
 
-  const sendRequest = useCallback(async (requestData) => {
+  const sendRequest = useCallback(async (requestData) => {  //sendRequest was used as a dependency in the useEffect of a component and useCallback is used to prevent unnecessary re-creation of this function 
     dispatch({ type: 'SEND' });
 
     try {

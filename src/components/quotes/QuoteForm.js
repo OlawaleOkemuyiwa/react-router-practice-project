@@ -28,7 +28,10 @@ const QuoteForm = props => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    // optional: Could validate here
+    //CCC optional: Could validate here
+    if (enteredText.trim() === 0 || enteredAuthor.trim() === 0) {
+      return;
+    }
 
     props.retrieveEnteredData({ author: enteredAuthor, text: enteredText });
   }

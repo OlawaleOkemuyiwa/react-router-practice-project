@@ -21,8 +21,8 @@ const NewCommentForm = props => {
     event.preventDefault();
     const enteredText = commentTextRef.current.value;
 
-    // optional: Could validate here
-    
+    //CCC optional: Could validate here
+
     sendRequest({
       commentData: { text: enteredText }, 
       quoteId
