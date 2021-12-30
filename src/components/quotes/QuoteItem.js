@@ -10,7 +10,7 @@ const QuoteItem = props => {
         </blockquote>
         <figcaption>{props.author}</figcaption>
       </figure>
-      <Link to={props.id} className='btn'>View Fullscreen</Link> {/*Link is in a component loaded by Route so its to prop is made relative to its parent component i.e to="quotes/'props.id' */}
+      <Link to={props.id} className='btn'>View Fullscreen</Link> {/*Link is in a component loaded by Route so its path is made relative to its parent component i.e to="quotes/'props.id' */}
     </li>
   );
 };

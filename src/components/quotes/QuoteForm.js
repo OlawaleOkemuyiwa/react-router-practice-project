@@ -13,11 +13,11 @@ const QuoteForm = props => {
   const textInputRef = useRef();
  
 
-  const formFocusedHandler = () => {
+  const formFocusedHandler = () => {    //when any input is focused in the form
     setIsEntering(true);
   }
 
-  const finishEnteringHandler = () => {
+  const finishEnteringHandler = () => {  //when the submit button is clicked
     setIsEntering(false)
   }
 

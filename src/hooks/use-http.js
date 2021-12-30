@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 
 function httpReducer(latestState, action) {
-  if (action.type === 'SEND') {
+  if (action.type === 'SENDING') {
     return {
       status: 'pending',
       data: null,
@@ -31,13 +31,13 @@ function httpReducer(latestState, action) {
 function useHttp(requestFunction, startWithPending = false) {
 
   const [httpState, dispatch] = useReducer(httpReducer, {
-    status: startWithPending ? 'pending' : null,
+    status: startWithPending ? 'pending' : null,            //basically if startWithPending is true then the status state is 'pending' for the first render of the component in which the hook is used and loadingSpinner displayed, if false then the first status is null until a change in state
     data: null,
     error: null
   });
 
   const sendRequest = useCallback(async (requestData) => {  //sendRequest was used as a dependency in the useEffect of a component and useCallback is used to prevent unnecessary re-creation of this function 
-    dispatch({ type: 'SEND' });
+    dispatch({ type: 'SENDING' });
 
     try {
       const responseData = await requestFunction(requestData);

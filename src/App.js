@@ -15,13 +15,13 @@ function App() {
         <Route path="/quotes/:quoteId" element={<QuoteDetail />}>
           <Route path="" element={                                    //the path here is relative to the parent route's path and since the element should be displayed when the URL is that of the parent's, it is left just that way
             <div className="centered">
-              <Link className="btn btn--flat" to="comments">Load Comments</Link>
+              <Link to="comments" className="btn btn--flat">Load Comments</Link>
             </div>
           }/>
           <Route path="comments" element={<Comments />}/>
         </Route>
         <Route path="/new-quote" element={<NewQuote />} />
-        <Route path="*" element={<NotFound />}/>                      {/*matches all|any URL and should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the URL*/}
+        <Route path="*" element={<NotFound />}/>                      {/*matches all|any URL. Should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the current URL*/}
       </Routes>
     </Layout>
   );

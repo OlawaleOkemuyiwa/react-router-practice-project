@@ -9,12 +9,13 @@ import CommentsList from './CommentsList';
 import NewCommentForm from './NewCommentForm';
 
 const Comments = props => {
-  const [isAddingComment, setIsAddingComment] = useState(false);    //to hide/show the add comment button and form
+  const [isAddingComment, setIsAddingComment] = useState(false);    //to hide|how the add comment button and form
   const { quoteId } = useParams();
+
   const { sendRequest, status, data: loadedComments } = useHttp(getAllComments, true);
 
-  useEffect(() => {
-    sendRequest(quoteId)
+  useEffect(() => { 
+    sendRequest(quoteId)   //to get comments
   }, [sendRequest, quoteId])
 
   const startAddCommentHandler = () => {

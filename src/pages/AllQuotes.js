@@ -7,10 +7,12 @@ import NoQuotesFound from "../components/quotes/NoQuotesFound";
 
 const AllQuotes = () => {
   const { sendRequest, status, data: loadedQuotes, error } = useHttp(getAllQuotes, true);
+  
+  console.log(status)
 
   useEffect(() => {
     sendRequest()
-  }, [sendRequest]);
+  }, [sendRequest]);   //send request only once after mount and whenever sendRequest function changes
 
   if (status === 'pending') {
     return (
