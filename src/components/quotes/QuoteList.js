@@ -4,12 +4,12 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
-const sortQuotes = (quotes, ascending) => {
+const sortQuotes = (quotes, ascending) => {  //a function that sorts quotes array by ascending or descending order and returns the sorted array
   return quotes.sort((quoteA, quoteB) => {
     if (ascending) {
-      return quoteA.id > quoteB.id ? 1 : -1;
+      return quoteA.id < quoteB.id ? -1 : 1;
     } else {
-      return quoteA.id < quoteB.id ? 1 : -1;
+      return quoteA.id > quoteB.id ? -1 : 1;
     }
   });
 };

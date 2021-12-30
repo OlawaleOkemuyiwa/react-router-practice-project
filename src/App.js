@@ -1,28 +1,38 @@
+import React, { Suspense } from "react";
 import { Navigate, Route, Routes, Link } from "react-router-dom";
 import Comments from "./components/comments/Comments";
 import Layout from "./components/layout/Layout";
+import LoadingSpinner from "./components/UI/LoadingSpinner";
 import AllQuotes from "./pages/AllQuotes";
-import NewQuote from "./pages/NewQuote";
+// import NewQuote from "./pages/NewQuote";
 import NotFound from "./pages/NotFound";
 import QuoteDetail from "./pages/QuoteDetail";
+
+const NewQuote = React.lazy(() => import('./pages/NewQuote'))   //This is lazy laoding. The CB func of React lazy will only be executed when the NewQuote component is needed and not downlaoded in advance. This creates a seperate code chunk which is only downloaded when NewQuote page is visited(when route loads the component as it matches a URL). Suspense component with a fallback JSX is used to wrap where lazy loading is used because sometimes the code take a lil while to downlaod and there should be a fallback jsx rendered before the code is completely downloaded
 
 function App() {
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Navigate replace to="/quotes"/>}/>
-        <Route path="/quotes" element={<AllQuotes />} />
-        <Route path="/quotes/:quoteId" element={<QuoteDetail />}>
-          <Route path="" element={                                    //the path here is relative to the parent route's path and since the element should be displayed when the URL is that of the parent's, it is left just that way
-            <div className="centered">
-              <Link to="comments" className="btn btn--flat">Load Comments</Link>
-            </div>
-          }/>
-          <Route path="comments" element={<Comments />}/>
-        </Route>
-        <Route path="/new-quote" element={<NewQuote />} />
-        <Route path="*" element={<NotFound />}/>                      {/*matches all|any URL. Should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the current URL*/}
-      </Routes>
+      <Suspense fallback={
+        <div className="centered">
+          <LoadingSpinner />
+        </div>
+      }>
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/quotes"/>}/>
+          <Route path="/quotes" element={<AllQuotes />} />
+          <Route path="/quotes/:quoteId" element={<QuoteDetail />}>
+            <Route path="" element={                                    //the path here is relative to the parent route's path and since the element should be displayed when the URL is that of the parent's, it is left just that way
+              <div className="centered">
+                <Link to="comments" className="btn btn--flat">Load Comments</Link>
+              </div>
+            }/>
+            <Route path="comments" element={<Comments />}/>
+          </Route>
+          <Route path="/new-quote" element={<NewQuote />} />
+          <Route path="*" element={<NotFound />}/>                      {/*matches all|any URL. Should be placed last inside Routes. It is used as a fallback for when none of the above routes matches the current URL*/}
+        </Routes>
+      </Suspense>
     </Layout>
   );
 }
