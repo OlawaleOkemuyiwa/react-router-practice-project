@@ -3,12 +3,15 @@ import { Navigate, Route, Routes, Link } from "react-router-dom";
 import Comments from "./components/comments/Comments";
 import Layout from "./components/layout/Layout";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
-import AllQuotes from "./pages/AllQuotes";
+// import AllQuotes from "./pages/AllQuotes";
 // import NewQuote from "./pages/NewQuote";
-import NotFound from "./pages/NotFound";
-import QuoteDetail from "./pages/QuoteDetail";
+// import NotFound from "./pages/NotFound";
+// import QuoteDetail from "./pages/QuoteDetail";
 
-const NewQuote = React.lazy(() => import('./pages/NewQuote'))   //This is lazy laoding. The CB func of React lazy will only be executed when the NewQuote component is needed and not downlaoded in advance. This creates a seperate code chunk which is only downloaded when NewQuote page is visited(when route loads the component as it matches a URL). Suspense component with a fallback JSX is used to wrap where lazy loading is used because sometimes the code take a lil while to downlaod and there should be a fallback jsx rendered before the code is completely downloaded
+const NewQuote = React.lazy(() => import('./pages/NewQuote'));     //This is lazy laoding. The CB func of React lazy will only be executed when the NewQuote component is needed and not downlaoded in advance. This creates a seperate code chunk which is only downloaded when NewQuote page is visited(when route loads the component as it matches a URL). Suspense component with a fallback JSX is used to wrap where lazy loading is used because sometimes the code take a lil while to downlaod and there should be a fallback jsx rendered before the code is completely downloaded
+const QuoteDetail = React.lazy(() => import('./pages/QuoteDetail'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
+const AllQuotes = React.lazy(() => import('./pages/AllQuotes'))
 
 function App() {
   return (
